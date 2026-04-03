@@ -5,7 +5,7 @@ Minimal full-stack application for rule-based support ticket triage.
 Tech stack:
 - Backend: Node.js + Express
 - Frontend: Vanilla HTML, CSS, JavaScript
-- Storage: JSON file
+- Storage: SQLite
 - Containers: Docker + Docker Compose
 
 ## Project Structure
@@ -29,7 +29,7 @@ root/
 │     ├─ controllers/
 │     │  └─ ticketController.js
 │     ├─ data/
-│     │  └─ tickets.json
+│     │  └─ tickets.db
 │     ├─ routes/
 │     │  └─ ticketRoutes.js
 │     └─ services/
@@ -198,18 +198,18 @@ Expected result:
 
 ## Notes
 
-- Stored tickets live in [tickets.json](C:\Users\hp5cd\Desktop\New%20folder\backend\src\data\tickets.json)
-- The file has been reset, so only new tickets submitted from now on will appear
+- Stored tickets now live in SQLite at `backend/src/data/tickets.db`
+- The database file is created automatically when the backend starts
 - Frontend Docker uses nginx as a static server and reverse proxy to the backend
 
 ## Reflection
 
-This project was designed to stay simple, readable, and easy to run locally. I chose a small JSON-based data model because the assignment did not require a full database, and using a file made the app easy to inspect and debug. Each ticket stores the original message, analysis output, and timestamp, which is enough for this scope without adding unnecessary complexity.
+This project was designed to stay simple, readable, and easy to run locally. I chose a small SQLite data model because it satisfies the database requirement without adding the setup cost of a larger database server. Each ticket stores the original message, analysis output, and timestamp, which is enough for this scope without adding unnecessary complexity.
 
 The API structure uses two endpoints: `POST /tickets/analyze` for the main analysis workflow and `GET /tickets` for viewing saved results. I chose this because it maps directly to the two main user actions in the UI and keeps the frontend integration straightforward. The backend is separated into controller, service, and analyzer layers so responsibilities stay clear even though the app is small.
 
 For classification, I used rule-based keyword and phrase matching instead of external AI services. That choice keeps the project deterministic, fast, and easy to explain. The weighted confidence scoring adds a bit more structure than simple keyword counting, while still being understandable and lightweight.
 
-The main trade-off is that rule-based classification is limited. It works well for known keywords and phrases, but it can miss spelling mistakes, unusual phrasing, or more nuanced intent. JSON file storage is also fine for a small local demo, but it is not ideal for concurrent usage or large-scale data.
+The main trade-off is that rule-based classification is limited. It works well for known keywords and phrases, but it can miss spelling mistakes, unusual phrasing, or more nuanced intent. SQLite is a good fit for a local assignment project, but it is still not ideal for large-scale production traffic or more advanced querying needs.
 
 With more time, I would improve the accuracy of the analyzer, normalize repeated or overlapping keywords better, add automated tests, and use a real database. I would also improve observability with structured logs and make the frontend show richer ticket history states such as loading, empty, and retry actions.

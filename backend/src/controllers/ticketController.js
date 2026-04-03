@@ -1,6 +1,6 @@
 const ticketService = require("../services/ticketService");
 
-function analyzeTicket(req, res) {
+async function analyzeTicket(req, res) {
   try {
     const { message } = req.body;
 
@@ -8,16 +8,20 @@ function analyzeTicket(req, res) {
       return res.status(400).json({ error: "A non-empty message is required." });
     }
 
-    const ticket = ticketService.createTicket(message);
+    const ticket = await ticketService.createTicket(message);
     return res.status(201).json(ticket);
   } catch (error) {
     return res.status(500).json({ error: "Internal server error" });
   }
 }
 
-function getTickets(req, res) {
-  const tickets = ticketService.getAllTickets();
-  return res.json(tickets);
+async function getTickets(req, res) {
+  try {
+    const tickets = await ticketService.getAllTickets();
+    return res.json(tickets);
+  } catch (error) {
+    return res.status(500).json({ error: "Internal server error" });
+  }
 }
 
 module.exports = {
