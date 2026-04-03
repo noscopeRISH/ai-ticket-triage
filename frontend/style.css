@@ -1,0 +1,179 @@
+:root {
+  --bg: #f4efe7;
+  --panel: #fffaf3;
+  --border: #d7c8b1;
+  --text: #2f2419;
+  --muted: #75614f;
+  --accent: #9b4d28;
+  --accent-dark: #7e3d1f;
+  --pill: #efe0cd;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  background:
+    radial-gradient(circle at top left, #fff6ea 0, transparent 35%),
+    linear-gradient(180deg, #f3eadf 0%, #efe5d7 100%);
+  color: var(--text);
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 32px 16px 48px;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(62, 40, 20, 0.08);
+  margin-bottom: 20px;
+}
+
+h1,
+h2 {
+  margin-top: 0;
+}
+
+.intro,
+.status,
+.ticket-message,
+.ticket-time {
+  color: var(--muted);
+}
+
+.ticket-form {
+  display: grid;
+  gap: 12px;
+}
+
+textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 140px;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  font: inherit;
+  background: #fff;
+}
+
+button {
+  width: fit-content;
+  border: 0;
+  border-radius: 999px;
+  padding: 12px 18px;
+  font: inherit;
+  cursor: pointer;
+  background: var(--accent);
+  color: #fff;
+}
+
+button:hover {
+  background: var(--accent-dark);
+}
+
+button.secondary {
+  background: #d7c3a9;
+  color: var(--text);
+}
+
+.result-card {
+  margin-top: 20px;
+  padding: 18px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid var(--border);
+}
+
+.result-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.result-grid span {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.urgency {
+  text-transform: capitalize;
+}
+
+.urgency-high {
+  color: #b42318;
+}
+
+.urgency-medium {
+  color: #b54708;
+}
+
+.urgency-low {
+  color: #027a48;
+}
+
+.ticket-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.ticket-list {
+  display: grid;
+  gap: 14px;
+}
+
+.ticket-card {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: #fff;
+  padding: 16px;
+}
+
+.ticket-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.pill {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--pill);
+  font-size: 0.9rem;
+}
+
+.urgency-pill {
+  font-weight: 700;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 18px 12px 32px;
+  }
+
+  .panel {
+    padding: 18px;
+  }
+
+  .ticket-list-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

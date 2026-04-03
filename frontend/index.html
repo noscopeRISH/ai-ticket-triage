@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Ticket Triage</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <section class="panel">
+        <h1>AI-Powered Support Ticket Triage</h1>
+        <p class="intro">
+          Submit a support message to classify the ticket, assign priority, extract keywords, and store the result.
+        </p>
+
+        <form id="ticket-form" class="ticket-form">
+          <label for="message">Support Message</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="6"
+            placeholder="Describe the customer issue here..."
+            required
+          ></textarea>
+          <button type="submit">Analyze Ticket</button>
+        </form>
+
+        <p id="status" class="status"></p>
+
+        <div id="result" class="result-card hidden">
+          <h2>Latest Analysis</h2>
+          <div class="result-grid">
+            <div><span>Category</span><strong id="result-category"></strong></div>
+            <div><span>Urgency</span><strong id="result-urgency"></strong></div>
+            <div><span>Priority</span><strong id="result-priority"></strong></div>
+            <div><span>Confidence</span><strong id="result-confidence"></strong></div>
+            <div><span>Keywords</span><strong id="result-keywords"></strong></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="ticket-list-header">
+          <h2>Previous Tickets</h2>
+          <button id="refresh-button" type="button" class="secondary">Refresh</button>
+        </div>
+        <div id="ticket-list" class="ticket-list"></div>
+      </section>
+    </main>
+
+    <script src="/script.js"></script>
+  </body>
+  </html>

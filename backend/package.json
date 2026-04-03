@@ -1,0 +1,12 @@
+{
+  "name": "ai-ticket-triage",
+  "version": "1.0.0",
+  "description": "Minimal AI-powered support ticket triage app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
